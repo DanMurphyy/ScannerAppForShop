@@ -25,6 +25,8 @@ class ItemsViewModel @Inject constructor(
     val userData: StateFlow<ModelUser?> = _userData
     private val _itemData: MutableStateFlow<ModelItems?> = MutableStateFlow(ModelItems())
     val itemData: StateFlow<ModelItems?> = _itemData
+    private var _allItems = MutableStateFlow<List<ModelItems>>(emptyList())
+    var allItems: StateFlow<List<ModelItems>> = _allItems
 
     fun getUserData(userId: String, listener: IAuthViews) {
         iViews = listener
@@ -90,6 +92,49 @@ class ItemsViewModel @Inject constructor(
                 }
             }
         }
+    }
 
+    fun getAllItems(userId: String, listener: IAuthViews) {
+        iViews = listener
+        viewModelScope.launch {
+            itemsUseCase.getAllItems(userId).collectLatest {
+                when (it) {
+                    is Resource.Loading -> {
+                        iViews.showProgressBar()
+                    }
+
+                    is Resource.Error -> {
+                        iViews.showError(it.message)
+                    }
+
+                    is Resource.Success -> {
+                        iViews.hideProgressBar()
+                        _allItems.value = it.data
+                    }
+                }
+            }
+        }
+    }
+
+    fun deleteItem(userId: String, itemCode: String, listener: IAuthViews) {
+        iViews = listener
+        viewModelScope.launch {
+            itemsUseCase.deleteItem(userId, itemCode).collectLatest {
+                when (it) {
+                    is Resource.Loading -> {
+                        iViews.showProgressBar()
+                    }
+
+                    is Resource.Error -> {
+                        iViews.showError(it.message)
+                    }
+
+                    is Resource.Success -> {
+                        iViews.hideProgressBar()
+                        iViews.showError("Deleted Successfully!")
+                    }
+                }
+            }
+        }
     }
 }

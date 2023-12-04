@@ -14,4 +14,8 @@ class ItemsUseCase @Inject constructor(
 
     fun searchItemInfo(userId: String, itemBarCode: String) =
         itemsRepository.searchItemInfo(userId, itemBarCode)
+
+    fun deleteItem(userId: String, itemCode: String) = itemsRepository.deleteItem(userId, itemCode)
+
+    fun getAllItems(userId: String) = itemsRepository.getAllItems(userId)
 }

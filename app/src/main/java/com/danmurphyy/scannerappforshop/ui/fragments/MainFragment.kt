@@ -41,17 +41,25 @@ class MainFragment : Fragment(), IAuthViews {
             findNavController().navigate(R.id.action_mainFragment_to_searchFragment)
         }
 
+        binding.viewInventory.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_viewFragment)
+        }
+
+        binding.deleteItems.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_deleteFragment)
+        }
+
         showUserName()
 
         return (binding.root)
     }
 
-    private fun showUserName(){
+    private fun showUserName() {
         val userId = authViewModel.getUserId()
         itemsViewModel.getUserData(userId, this)
         CoroutineScope(Dispatchers.IO).launch {
             itemsViewModel.userData.collectLatest { user ->
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     val existingText = binding.firebaseName.text.toString()
                     val newText = "$existingText ${user?.depName}"
                     binding.firebaseName.text = newText

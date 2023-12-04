@@ -71,6 +71,12 @@ class ScannerFragment : Fragment(), ZBarScannerView.ResultHandler {
                     ScannerFragmentDirections.actionScannerFragmentToSearchFragment(result)
                 findNavController().navigate(scannedCode)
             }
+
+            "delete" ->{
+                val scannedCode =
+                    ScannerFragmentDirections.actionScannerFragmentToDeleteFragment(result)
+                findNavController().navigate(scannedCode)
+            }
         }
     }
 

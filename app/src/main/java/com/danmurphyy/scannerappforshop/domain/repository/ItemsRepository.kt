@@ -9,4 +9,6 @@ interface ItemsRepository {
     fun getUserData(userId: String): Flow<Resource<ModelUser>>
     fun addItem(userId: String, itemModelItems: ModelItems): Flow<Resource<Boolean>>
     fun searchItemInfo(userId: String, itemBarCode: String): Flow<Resource<ModelItems>>
+    fun deleteItem(userId: String, itemCode: String): Flow<Resource<Boolean>>
+    fun getAllItems(userId: String): Flow<Resource<List<ModelItems>>>
 }

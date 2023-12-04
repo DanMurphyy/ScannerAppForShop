@@ -128,4 +128,68 @@ class ItemsRepositoryImp @Inject constructor(
             }
 
         }
+
+    override fun deleteItem(userId: String, itemCode: String): Flow<Resource<Boolean>> =
+        channelFlow {
+            try {
+                trySend(Resource.Loading)
+                val itemDocument = fireStore.collection(Constants.Users)
+                    .document(userId)
+                    .collection(Constants.Items)
+                    .whereEqualTo(Constants.ItemBarCode, itemCode)
+                    .get()
+                    .await()
+                if (!itemDocument.isEmpty) {
+                    itemDocument.documents[0].reference
+                        .delete()
+                        .addOnSuccessListener {
+                            trySend(Resource.Success(true))
+                        }
+                        .addOnFailureListener {
+                            trySend(Resource.Error("Deleting Item Failed due to ${it.localizedMessage}"))
+                        }
+                } else {
+                    trySend(Resource.Error("Item not found"))
+                }
+
+                awaitClose()
+            } catch (e: Exception) {
+                trySend(
+                    Resource.Error(
+                        e.localizedMessage ?: "An Error Occurred in getUserData (Catch)"
+                    )
+                )
+            } finally {
+                // Close the channel when the collection is complete
+                close()
+            }
+        }
+
+    override fun getAllItems(userId: String): Flow<Resource<List<ModelItems>>> =
+        channelFlow {
+            try {
+                trySend(Resource.Loading)
+                val querySnapshot = fireStore.collection(Constants.Users)
+                    .document(userId)
+                    .collection(Constants.Items)
+                    .get()
+                    .await()
+
+                val itemsList = querySnapshot.documents.mapNotNull { document ->
+                    document.toObject(ModelItems::class.java)
+                }
+                trySend(Resource.Success(itemsList))
+
+                awaitClose()
+            } catch (e: Exception) {
+                trySend(
+                    Resource.Error(
+                        e.localizedMessage ?: "An Error Occurred in getAllItems (Catch)"
+                    )
+                )
+            } finally {
+                // Close the channel when the collection is complete
+                close()
+            }
+        }
 }

@@ -193,7 +193,6 @@
                     tools:ignore="UseCompoundDrawables">
 
                     <ImageView
-
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_gravity="center"

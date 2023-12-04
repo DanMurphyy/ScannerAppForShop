@@ -36,4 +36,9 @@
     <string name="item_category">Item Category</string>
     <string name="item_price">Item Price $</string>
     <string name="item_name">Item Name</string>
+    <string name="item_to_delete">Item to Delete:</string>
+    <string name="delete_item">Delete Item</string>
+    <string name="no_of_items">No of Items =</string>
+    <string name="_0">0</string>
+    <string name="total_sum">Total sum = $</string>
 </resources>

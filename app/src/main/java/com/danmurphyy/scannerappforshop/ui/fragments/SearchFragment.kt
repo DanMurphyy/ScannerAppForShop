@@ -52,16 +52,21 @@ class SearchFragment : Fragment(), IAuthViews {
     private fun showItemDetails(itemCode: String) {
         Log.d("SearchFragmentNow", "showItemDetails $itemCode")
         val userId = authViewModel.getUserId()
-        itemsViewModel.searchItemInfo(userId, itemCode, this)
-        CoroutineScope(Dispatchers.IO).launch {
-            itemsViewModel.itemData.collectLatest { item ->
-                withContext(Dispatchers.Main) {
-                    binding.layoutSearch.viewitemname.text = item?.itemName.toString()
-                    binding.layoutSearch.viewitembarcode.text = item?.itemBarCode.toString()
-                    binding.layoutSearch.viewitemcategory.text = item?.itemCategory.toString()
-                    binding.layoutSearch.viewitemprice.text = item?.itemPrice.toString()
+        if (!itemCode.isEmpty()) {
+            itemsViewModel.searchItemInfo(userId, itemCode, this)
+            CoroutineScope(Dispatchers.IO).launch {
+                itemsViewModel.itemData.collectLatest { item ->
+                    withContext(Dispatchers.Main) {
+                        binding.layoutSearch.viewitemname.text = item?.itemName.toString()
+                        binding.layoutSearch.viewitembarcode.text = item?.itemBarCode.toString()
+                        binding.layoutSearch.viewitemcategory.text = item?.itemCategory.toString()
+                        binding.layoutSearch.viewitemprice.text = item?.itemPrice.toString()
+                    }
                 }
             }
+            binding.searchField.text.clear()
+        } else {
+            showToast("Please insert code")
         }
     }
 

@@ -38,13 +38,21 @@
         <action
             android:id="@+id/action_addFragment_to_scannerFragment2"
             app:destination="@id/scannerFragment"
-            app:popUpTo="@id/mainFragment" />
+            app:popUpTo="@id/addFragment" />
     </fragment>
     <fragment
         android:id="@+id/deleteFragment"
         android:name="com.danmurphyy.scannerappforshop.ui.fragments.DeleteFragment"
         android:label="fragment_delete"
-        tools:layout="@layout/fragment_delete" />
+        tools:layout="@layout/fragment_delete" >
+        <action
+            android:id="@+id/action_deleteFragment_to_scannerFragment"
+            app:destination="@id/scannerFragment"
+            app:popUpTo="@id/deleteFragment" />
+        <argument
+            android:name="scannedCode"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.danmurphyy.scannerappforshop.ui.fragments.SearchFragment"
@@ -53,7 +61,7 @@
         <action
             android:id="@+id/action_searchFragment_to_scannerFragment"
             app:destination="@id/scannerFragment"
-            app:popUpTo="@id/mainFragment" />
+            app:popUpTo="@id/searchFragment" />
         <argument
             android:name="scannedCode"
             app:argType="string" />
@@ -78,6 +86,10 @@
         <action
             android:id="@+id/action_scannerFragment_to_searchFragment"
             app:destination="@id/searchFragment"
+            app:popUpTo="@id/mainFragment" />
+        <action
+            android:id="@+id/action_scannerFragment_to_deleteFragment"
+            app:destination="@id/deleteFragment"
             app:popUpTo="@id/mainFragment" />
     </fragment>
 </navigation>
