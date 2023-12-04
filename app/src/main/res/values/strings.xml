@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">ScannerAppForShop</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="ali_market">Ali Market</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="image">image</string>
+    <string name="intro_sign_in">Sign in</string>
+    <string name="intro_sign_up">Register</string>
+    <string name="department_name">Department Name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="email">Email</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_product">Add Product</string>
+    <string name="delete_product">Delete Product</string>
+    <string name="search_product">Search Product</string>
+    <string name="view_inventory">View Inventory</string>
+    <string name="welcome">Welcome,</string>
+    <string name="product_details">Product Details</string>
+    <string name="product">Product</string>
+    <string name="name">Name</string>
+    <string name="category">Category</string>
+    <string name="price">Price</string>
+    <string name="_5_50">$5.50</string>
+    <string name="number">Number</string>
+    <string name="bar_qr_code_number">Bar/QR Code Number</string>
+    <string name="scan_code">Scan Code</string>
+    <string name="add_item">Add Item</string>
+    <string name="search_items">Search item by Code</string>
+    <string name="scan_items">Scan Items</string>
+    <string name="search">Search</string>
+    <string name="item_barcode">Item Barcode</string>
+    <string name="item_category">Item Category</string>
+    <string name="item_price">Item Price $</string>
+    <string name="item_name">Item Name</string>
+</resources>

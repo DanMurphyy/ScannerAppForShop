@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "663803674450",
+    "project_id": "scannerappforshop",
+    "storage_bucket": "scannerappforshop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663803674450:android:21ad64be2f9d49ea08848b",
+        "android_client_info": {
+          "package_name": "com.danmurphyy.scannerappforshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZVis4_ITVBGG3k9ioLUbV0lanUzgb8Oo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
